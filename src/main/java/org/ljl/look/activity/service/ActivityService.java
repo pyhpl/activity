@@ -12,8 +12,11 @@ public class ActivityService {
 
     @Autowired
     private ActivityMapper activityMapper;
+    @Autowired
+    private ActivityImageService activityImageService;
 
     public void add(Activity activity) {
+        activity.getActivityImages().forEach(activityImageService::add);
         activityMapper.insert(activity);
     }
 

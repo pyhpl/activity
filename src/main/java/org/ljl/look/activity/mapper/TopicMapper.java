@@ -12,9 +12,10 @@ import java.util.List;
 @Mapper
 @Repository
 public interface TopicMapper {
-    @Insert("INSERT INTO topic VALUES(#{uuid}::uuid, #{name}, #{description}, #{createUser}, #{createDate}, #{valid})")
+    @Insert("INSERT INTO topic (uuid, name, description, image, create_user, create_date, valid) " +
+            "VALUES(#{uuid}::uuid, #{name}, #{description}, #{image}, #{createUser}, #{createDate}, #{valid})")
     void insert(Topic topic);
 
-    @Select("Select * FROM topic WHERE parent_topic_uuid=#{parentTopicUuid}")
+    @Select("Select uuid, name, description, image FROM topic WHERE parent_topic_uuid=#{parentTopicUuid}::uuid")
     List<Topic> selectByParentTopicUuid(@Param("parentTopicUuid") String parentTopicUuid);
 }

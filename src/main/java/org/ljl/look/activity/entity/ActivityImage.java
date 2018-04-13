@@ -2,20 +2,14 @@ package org.ljl.look.activity.entity;
 
 import lombok.*;
 
-import java.util.Date;
-
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Topic {
+public class ActivityImage {
     private String uuid;
-    private String name;
-    private String description;
     private String image;
-    private String parentTopicUuid;
-    private String createUser;
-    private Date createDate;
+    private String activityUuid;
     private short valid;
 }

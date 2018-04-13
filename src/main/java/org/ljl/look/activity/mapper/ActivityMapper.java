@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ActivityMapper {
 
-    @Insert("INSERT INTO activity VALUES(#{uuid}::uuid, #{title}, #{topic_uuid}::uuid, #{detail}, #{school}, #{place}, #{deadline}, #{limit_user_count}, #{contact_type}, #{contact_represent}, #{publish_user}, #{publish_date}, #{valid})")
+    @Insert("INSERT INTO activity VALUES(#{uuid}::uuid, #{title}, #{topicUuid}::uuid, #{detail}, #{school}, #{place}, #{deadline}, #{limitUserCount}, #{contactType}, #{contactRepresent}, #{publishUser}, #{publishDate}, #{valid})")
     void insert(Activity activity);
 }
