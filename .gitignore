@@ -1,0 +1,11 @@
+.DS_Store
+.gradle/
+.idea/
+gradle/
+build/
+gradlew
+gradlew.bat
+out/
+user.iml
+keystore.p12
+src/test/**
