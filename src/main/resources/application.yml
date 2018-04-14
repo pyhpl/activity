@@ -1,6 +1,6 @@
 spring:
   application:
-    name: User
+    name: activity
   redis:
     host: localhost
     password: sc_admin

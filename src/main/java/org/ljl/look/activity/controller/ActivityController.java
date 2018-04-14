@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/activity")
 public class ActivityController {
@@ -22,6 +24,12 @@ public class ActivityController {
         return new HttpHeaders() {{
             set("uuid", activity.getUuid());
         }};
+    }
+
+    @GetMapping("")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Activity> getsByTag(@RequestParam String tag) {
+        return activityService.getByFuzzyMatching(tag);
     }
 
 }
