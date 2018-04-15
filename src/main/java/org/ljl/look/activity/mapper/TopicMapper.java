@@ -16,6 +16,9 @@ public interface TopicMapper {
             "VALUES(#{uuid}::uuid, #{name}, #{description}, #{image}, #{createUser}, #{createDate}, #{valid})")
     void insert(Topic topic);
 
-    @Select("Select uuid, name, description, image FROM topic WHERE parent_topic_uuid=#{parentTopicUuid}::uuid")
+    @Select("SELECT uuid, name, description, image FROM topic WHERE parent_topic_uuid=#{parentTopicUuid}::uuid")
     List<Topic> selectByParentTopicUuid(@Param("parentTopicUuid") String parentTopicUuid);
+
+    @Select("SELECT * FROM topic WHERE uuid=#{uuid}::uuid")
+    Topic selectByUuid(@Param("uuid") String uuid);
 }

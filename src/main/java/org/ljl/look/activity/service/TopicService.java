@@ -23,4 +23,8 @@ public class TopicService {
         return topicMapper.selectByParentTopicUuid(parentTopicUuid);
     }
 
+    public Topic getByUuid(String uuid) {
+        return topicMapper.selectByUuid(uuid);
+    }
+
 }

@@ -23,6 +23,12 @@ public class TopicController {
         return topicService.getByParentTopicUuid(parentTopicUuid);
     }
 
+    @GetMapping("")
+    @ResponseStatus(HttpStatus.OK)
+    public Topic get(@RequestParam String uuid) {
+        return topicService.getByUuid(uuid);
+    }
+
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public HttpHeaders post(@Validated @RequestBody Topic topic) {

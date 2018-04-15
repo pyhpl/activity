@@ -26,7 +26,7 @@ public class Activity {
     private short contactType;
     private String contactRepresent;
     private int likeCount; // 点赞数
-    private String publishUser;
+    private String publishUser; // openId
     private Date publishDate;
     private short valid;
 
