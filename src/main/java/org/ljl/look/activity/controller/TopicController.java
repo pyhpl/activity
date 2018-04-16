@@ -17,16 +17,22 @@ public class TopicController {
     @Autowired
     private TopicService topicService;
 
-    @GetMapping("s")
+    @GetMapping("/hot")
     @ResponseStatus(HttpStatus.OK)
-    public List<Topic> gets(@RequestParam String parentTopicUuid) {
-        return topicService.getByParentTopicUuid(parentTopicUuid);
+    public List<Topic> getHot(@RequestParam String number) {
+        return topicService.getHotTopic(number);
     }
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     public Topic get(@RequestParam String uuid) {
         return topicService.getByUuid(uuid);
+    }
+
+    @GetMapping("s")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Topic> gets(@RequestParam String parentTopicUuid) {
+        return topicService.getByParentTopicUuid(parentTopicUuid);
     }
 
     @PostMapping("")
