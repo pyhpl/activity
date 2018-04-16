@@ -1,9 +1,6 @@
 package org.ljl.look.activity.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.ljl.look.activity.entity.Activity;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +10,7 @@ import java.util.List;
 @Repository
 public interface ActivityMapper {
 
-    @Insert("INSERT INTO activity VALUES(#{uuid}::uuid, #{title}, #{topicUuid}::uuid, #{detail}, #{school}, #{place}, #{deadline}, #{limitUserCount}, #{contactType}, #{contactRepresent}, #{publishUser}, #{publishDate}, #{valid}), #{likeCount}")
+    @Insert("INSERT INTO activity VALUES(#{uuid}::uuid, #{title}, #{topicUuid}::uuid, #{detail}, #{school}, #{place}, #{deadline}, #{limitUserCount}, #{contactType}, #{contactRepresent}, #{publishUser}, #{publishDate}, #{valid})")
     void insert(Activity activity);
 
     @Select("SELECT * FROM activity WHERE " +

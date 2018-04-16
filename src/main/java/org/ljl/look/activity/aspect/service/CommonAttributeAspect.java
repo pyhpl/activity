@@ -33,7 +33,7 @@ public class CommonAttributeAspect {
     public void addActivityImage(){}
 
     @Before("addTopic()||addActivity()||addParentTopic()||addActivityImage()")
-    public void doBefore(JoinPoint joinPoint) throws Exception {
+    public void doBeforeAdd(JoinPoint joinPoint) throws Exception {
         Object arg = joinPoint.getArgs()[0];
         if (arg instanceof Topic) { // topic
             Topic topic = (Topic) arg;

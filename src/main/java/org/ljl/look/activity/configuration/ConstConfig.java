@@ -10,4 +10,8 @@ public class ConstConfig {
     public static final short UNVALID = (short) 0;
     public static final short LEGAL = (short) 2;
     public static final short ILLEGAL = (short) 3;
+
+    public static final String ACTION = "action";
+    public static final String UP = "up";
+    public static final String DOWN = "down";
 }

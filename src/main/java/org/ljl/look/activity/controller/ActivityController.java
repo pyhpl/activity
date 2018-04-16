@@ -31,5 +31,4 @@ public class ActivityController {
     public List<Activity> getsByTag(@RequestParam String tag) {
         return activityService.getByFuzzyMatching(tag);
     }
-
 }
