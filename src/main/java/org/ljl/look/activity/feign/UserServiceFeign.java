@@ -13,6 +13,6 @@ import java.util.List;
 public interface UserServiceFeign {
 
     // ********************** /api/topic-focus ******************** //
-    @GetMapping("/api/topic-focus")
-    List<TopicFocus> get(@RequestParam String orderBy, @RequestParam String order, @RequestParam int limit);
+    @GetMapping("/api/topic-focus/s/hot")
+    List<TopicFocus> getHotTopicFocuses(@RequestParam("pageInfoJsonStr") String pageInfoJsonStr);
 }

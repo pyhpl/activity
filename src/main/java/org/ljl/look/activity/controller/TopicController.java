@@ -17,10 +17,10 @@ public class TopicController {
     @Autowired
     private TopicService topicService;
 
-    @GetMapping("/hot")
+    @GetMapping("/s/hot")
     @ResponseStatus(HttpStatus.OK)
-    public List<Topic> getHot(@RequestParam String number) {
-        return topicService.getHotTopic(number);
+    public List<Topic> getHot(@RequestParam String pageInfoJsonStr) {
+        return topicService.getHotTopic(pageInfoJsonStr);
     }
 
     @GetMapping("")
@@ -43,4 +43,5 @@ public class TopicController {
             set("uuid", topic.getUuid());
         }};
     }
+
 }

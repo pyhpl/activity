@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/parentTopic")
+@RequestMapping("/api/parent-topic")
 public class ParentTopicController {
 
     @Autowired

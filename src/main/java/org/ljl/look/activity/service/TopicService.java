@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -30,8 +31,9 @@ public class TopicService {
         return topicMapper.selectByUuid(uuid);
     }
 
-    public List<Topic> getHotTopic(String number) {
-//        return userServiceFeign.get("")
-        return null;
+    public List<Topic> getHotTopic(String pageInfoJsonStr) {
+        return userServiceFeign.getHotTopicFocuses(pageInfoJsonStr).stream()
+                .map(topicFocus -> topicMapper.selectByUuid(topicFocus.getTopicUuid()))
+                .collect(Collectors.toList());
     }
 }

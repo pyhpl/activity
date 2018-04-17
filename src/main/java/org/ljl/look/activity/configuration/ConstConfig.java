@@ -11,7 +11,9 @@ public class ConstConfig {
     public static final short LEGAL = (short) 2;
     public static final short ILLEGAL = (short) 3;
 
-    public static final String ACTION = "action";
-    public static final String UP = "up";
-    public static final String DOWN = "down";
+    public static final String PAGE_INFO_JSON_STR = "pageInfoJsonStr";
+    public static final String PAGE_NUM = "pageNum";
+    public static final String PAGE_SIZE = "pageSize";
+    public static final String DEFAULT_PAGE_NUM = "1";
+    public static final String DEFAULT_PAGE_SIZE = "10";
 }
