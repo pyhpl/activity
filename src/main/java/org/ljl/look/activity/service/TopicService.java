@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,16 @@ public class TopicService {
     public List<Topic> getHotTopic(String pageInfoJsonStr) {
         return userServiceFeign.getHotTopicFocuses(pageInfoJsonStr).stream()
                 .map(topicFocus -> topicMapper.selectByUuid(topicFocus.getTopicUuid()))
+                .collect(Collectors.toList());
+    }
+
+    public List<Topic> getsByFromUser(String fromUser) {
+        return topicMapper.selectByFromUser(fromUser);
+    }
+
+    public List<Topic> getByUuidList(String uuidList) {
+        return Arrays.stream(uuidList.split(","))
+                .map(uuid -> topicMapper.selectByUuidAndValid(uuid))
                 .collect(Collectors.toList());
     }
 }

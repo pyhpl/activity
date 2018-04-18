@@ -21,4 +21,10 @@ public interface TopicMapper {
 
     @Select("SELECT * FROM topic WHERE uuid=#{uuid}::uuid")
     Topic selectByUuid(@Param("uuid") String uuid);
+
+    @Select("SELECT * FROM topic WHERE uuid=#{uuid}::uuid AND valid=${@org.ljl.look.activity.configuration.ConstConfig@VALID}")
+    Topic selectByUuidAndValid(@Param("uuid") String uuid);
+
+    @Select("SELECT * FROM topic WHERE from_user=#{fromUser} AND valid=${@org.ljl.look.activity.configuration.ConstConfig@VALID}")
+    List<Topic> selectByFromUser(@Param("fromUser") String fromUser);
 }

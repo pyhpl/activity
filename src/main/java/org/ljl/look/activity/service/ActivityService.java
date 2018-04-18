@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -26,4 +28,13 @@ public class ActivityService {
         return activityMapper.selectsByLike(key);
     }
 
+    public List<Activity> getByUuidList(String uuidList) {
+        return Arrays.stream(uuidList.split(","))
+                .map(uuid -> activityMapper.selectByUuid(uuid))
+                .collect(Collectors.toList());
+    }
+
+    public List<Activity> getsByFromUser(String fromUser) {
+        return activityMapper.selectByFromUser(fromUser);
+    }
 }

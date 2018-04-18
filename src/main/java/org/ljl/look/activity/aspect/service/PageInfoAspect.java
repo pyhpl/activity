@@ -24,7 +24,10 @@ public class PageInfoAspect {
     @Pointcut("execution(public * org.ljl.look.activity.service.TopicService.get*(..))")
     public void getTopic(){}
 
-    @Before("getTopic()")
+    @Pointcut("execution(public * org.ljl.look.activity.service.ActivityService.get*(..))")
+    public void getActivity(){}
+
+    @Before("getTopic()||getActivity()")
     public void doBeforeAdd(JoinPoint joinPoint) throws Exception {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
