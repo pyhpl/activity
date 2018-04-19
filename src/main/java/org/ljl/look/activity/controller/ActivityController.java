@@ -29,24 +29,27 @@ public class ActivityController {
         }};
     }
 
-    @GetMapping("/api/activity")
-    @ResponseStatus(HttpStatus.OK)
-    public List<Activity> getsByTag(@RequestParam String tag) {
-        return activityService.getByFuzzyMatching(tag);
-    }
+//    @GetMapping("/api/activity")
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<Activity> getsByTag(@RequestParam String tag) {
+//        return activityService.getByFuzzyMatching(tag);
+//    }
 
     @GetMapping("/api/activity/s")
     @ResponseStatus(HttpStatus.OK)
-    public List<Activity> gets(@RequestParam(required = false) String uuidList) {
+    public List<Activity> gets(@RequestParam(required = false) String uuidList,
+                               @RequestParam(required = false) String key) {
         if (uuidList != null) {
            return activityService.getByUuidList(uuidList);
+        } else if (key != null) {
+            return activityService.getByFuzzyMatching(key);
         }
         return null;
     }
 
     @GetMapping("/api/user/activity/s")
     @ResponseStatus(HttpStatus.OK)
-    public List<Activity> getsByFromUser(@RequestHeader("token") String token) {
-        return activityService.getsByFromUser(stringRedisTemplate.opsForValue().get(token));
+    public List<Activity> getsByPublishUser(@RequestHeader("token") String token) {
+        return activityService.getsByPublishUser(stringRedisTemplate.opsForValue().get(token));
     }
 }

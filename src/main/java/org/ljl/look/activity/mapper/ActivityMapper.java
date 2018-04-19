@@ -16,8 +16,8 @@ public interface ActivityMapper {
     @Select("SELECT * FROM activity WHERE uuid=#{uuid}::uuid AND valid=${@org.ljl.look.activity.configuration.ConstConfig@VALID}")
     Activity selectByUuid(@Param("uuid") String uuid);
 
-    @Select("SELECT * FROM activity WHERE from_user=#{fromUser} AND valid=${@org.ljl.look.activity.configuration.ConstConfig@VALID}")
-    List<Activity> selectByFromUser(@Param("fromUser") String fromUser);
+    @Select("SELECT * FROM activity WHERE publish_user=#{publishUser} AND valid=${@org.ljl.look.activity.configuration.ConstConfig@VALID}")
+    List<Activity> selectByPublishUser(@Param("publishUser") String publishUser);
 
     @Select("SELECT * FROM activity WHERE " +
             "title LIKE '%'||#{key}||'%' OR " +

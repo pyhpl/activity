@@ -34,7 +34,11 @@ public class ActivityService {
                 .collect(Collectors.toList());
     }
 
-    public List<Activity> getsByFromUser(String fromUser) {
-        return activityMapper.selectByFromUser(fromUser);
+    public List<Activity> getsByPublishUser(String fromUser) {
+        return activityMapper.selectByPublishUser(fromUser);
+    }
+
+    public List<Activity> getsByKey(String key) {
+        return null;
     }
 }

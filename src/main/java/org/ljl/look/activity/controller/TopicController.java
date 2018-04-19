@@ -34,11 +34,14 @@ public class TopicController {
     @GetMapping("/api/topic/s")
     @ResponseStatus(HttpStatus.OK)
     public List<Topic> gets(@RequestParam(required = false) String parentTopicUuid,
-                            @RequestParam(required = false) String uuidList) {
-        if (parentTopicUuid != null) {
+                            @RequestParam(required = false) String uuidList,
+                            @RequestParam(required = false) String key) {
+        if (parentTopicUuid != null) { // 根据父主题获取
             return topicService.getByParentTopicUuid(parentTopicUuid);
-        } else if (uuidList != null) {
+        } else if (uuidList != null) { // 根据uuid列表获取
             return topicService.getByUuidList(uuidList);
+        } else if(key != null) {
+            return topicService.getByKey(key);
         } else {
             return null;
         }
@@ -55,8 +58,8 @@ public class TopicController {
 
     @GetMapping("/api/user/topic/s")
     @ResponseStatus(HttpStatus.OK)
-    public List<Topic> getsByFromUser(@RequestHeader("token") String token) {
-        return topicService.getsByFromUser(stringRedisTemplate.opsForValue().get(token));
+    public List<Topic> getsByCreateUser(@RequestHeader("token") String token) {
+        return topicService.getsByCreateUser(stringRedisTemplate.opsForValue().get(token));
     }
 
 }
