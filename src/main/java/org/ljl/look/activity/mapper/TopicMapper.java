@@ -28,7 +28,6 @@ public interface TopicMapper {
     @Select("SELECT * FROM topic WHERE create_user=#{createUser} AND valid=${@org.ljl.look.activity.configuration.ConstConfig@VALID}")
     List<Topic> selectByCreateUser(@Param("createUser") String createUser);
 
-    @Select("SELECT * FROM topic WHERE (name LIKE '%'||#{key}||'%' OR description LIKE '%'||#{key}||'%')" +
-            "AND AND valid=${@org.ljl.look.activity.configuration.ConstConfig@VALID}")
+    @Select("SELECT * FROM topic WHERE (name LIKE '%'||#{key}||'%' OR description LIKE '%'||#{key}||'%') AND valid=${@org.ljl.look.activity.configuration.ConstConfig@VALID}")
     List<Topic> selectByLike(@Param("key") String key);
 }
