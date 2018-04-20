@@ -39,12 +39,12 @@ public class CommonAttributeAspect {
             Topic topic = (Topic) arg;
             topic.setUuid(UuidTool.getValue());
             topic.setCreateDate(new Date());
-            topic.setValid(ConstConfig.VALID);
+            topic.setValid(ConstConfig.UNVALID);
         } else if (arg instanceof Activity) { // activity
             Activity activity = (Activity) arg;
             activity.setUuid(UuidTool.getValue());
             activity.setPublishDate(new Date());
-            activity.setValid(ConstConfig.VALID);
+            activity.setValid(ConstConfig.UNVALID);
             // activity images的处理
             activity.getActivityImages().forEach(activityImage ->
                 activityImage.setActivityUuid(activity.getUuid())
