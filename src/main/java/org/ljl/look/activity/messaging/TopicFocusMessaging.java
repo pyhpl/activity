@@ -12,8 +12,8 @@ public class TopicFocusMessaging {
     @Autowired
     private AmqpTemplate rabbitTemplate;
 
-    public void send(TopicFocus topicFocus) {
-        rabbitTemplate.convertAndSend(ConstConfig.QUEUE_TOPIC_FOCUS, topicFocus);
+    public void send(String topicFocusJson) {
+        rabbitTemplate.convertAndSend(ConstConfig.QUEUE_TOPIC_FOCUS, topicFocusJson);
     }
 
 }

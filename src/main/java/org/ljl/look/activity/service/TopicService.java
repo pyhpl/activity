@@ -5,6 +5,7 @@ import org.ljl.look.activity.entity.TopicFocus;
 import org.ljl.look.activity.feign.UserServiceFeign;
 import org.ljl.look.activity.mapper.TopicMapper;
 import org.ljl.look.activity.messaging.TopicFocusMessaging;
+import org.ljl.look.activity.util.JsonTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +29,7 @@ public class TopicService {
     public void add(Topic topic) {
         topicMapper.insert(topic);
         topicFocusMessaging.send(
-                TopicFocus.builder().fromUser(topic.getCreateUser()).topicUuid(topic.getUuid()).build()
+                JsonTool.toJson(TopicFocus.builder().fromUser(topic.getCreateUser()).topicUuid(topic.getUuid()).build())
         );
     }
 
