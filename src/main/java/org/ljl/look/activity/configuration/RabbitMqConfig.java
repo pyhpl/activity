@@ -8,8 +8,13 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMqConfig {
 
     @Bean
-    Queue queue() {
-        return new Queue(ConstConfig.QUEUE_TOPIC_FOCUS);
+    Queue topicAuditQueue() {
+        return new Queue(ConstConfig.QUEUE_TOPIC_AUDIT);
+    }
+
+    @Bean
+    Queue activityAuditQueue() {
+        return new Queue(ConstConfig.QUEUE_ACTIVITY_AUDIT);
     }
 
 }

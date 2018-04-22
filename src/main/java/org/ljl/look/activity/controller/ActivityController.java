@@ -29,12 +29,6 @@ public class ActivityController {
         }};
     }
 
-//    @GetMapping("/api/activity")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<Activity> getsByTag(@RequestParam String tag) {
-//        return activityService.getByFuzzyMatching(tag);
-//    }
-
     @GetMapping("/api/activity/s")
     @ResponseStatus(HttpStatus.OK)
     public List<Activity> gets(@RequestParam(required = false) String uuidList,
@@ -51,5 +45,11 @@ public class ActivityController {
     @ResponseStatus(HttpStatus.OK)
     public List<Activity> getsByPublishUser(@RequestHeader("token") String token) {
         return activityService.getsByPublishUser(stringRedisTemplate.opsForValue().get(token));
+    }
+
+    @GetMapping("/api/activity")
+    @ResponseStatus(HttpStatus.OK)
+    public Activity get(@RequestParam("uuid") String uuid) {
+        return activityService.getByUuid(uuid);
     }
 }

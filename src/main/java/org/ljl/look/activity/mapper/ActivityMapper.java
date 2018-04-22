@@ -14,6 +14,9 @@ public interface ActivityMapper {
     void insert(Activity activity);
 
     @Select("SELECT * FROM activity WHERE uuid=#{uuid}::uuid AND valid=${@org.ljl.look.activity.configuration.ConstConfig@VALID}")
+    Activity selectByUuidAndValid(@Param("uuid") String uuid);
+
+    @Select("SELECT * FROM activity WHERE uuid=#{uuid}::uuid")
     Activity selectByUuid(@Param("uuid") String uuid);
 
     @Select("SELECT * FROM activity WHERE publish_user=#{publishUser} AND valid=${@org.ljl.look.activity.configuration.ConstConfig@VALID}")

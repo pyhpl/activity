@@ -1,11 +1,11 @@
 package org.ljl.look.activity.service;
 
+import org.ljl.look.activity.configuration.ConstConfig;
 import org.ljl.look.activity.entity.Topic;
-import org.ljl.look.activity.entity.TopicFocus;
+import org.ljl.look.activity.entity.TopicAudit;
 import org.ljl.look.activity.feign.UserServiceFeign;
 import org.ljl.look.activity.mapper.TopicMapper;
-import org.ljl.look.activity.messaging.TopicFocusMessaging;
-import org.ljl.look.activity.util.JsonTool;
+import org.ljl.look.activity.message.sender.TopicAuditSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,14 +22,13 @@ public class TopicService {
     private TopicMapper topicMapper;
     @Autowired
     private UserServiceFeign userServiceFeign;
-
     @Autowired
-    private TopicFocusMessaging topicFocusMessaging;
+    private TopicAuditSender topicAuditSender;
 
     public void add(Topic topic) {
         topicMapper.insert(topic);
-        topicFocusMessaging.send(
-                JsonTool.toJson(TopicFocus.builder().fromUser(topic.getCreateUser()).topicUuid(topic.getUuid()).build())
+        topicAuditSender.send(
+                TopicAudit.builder().topicUuid(topic.getUuid()).state(ConstConfig.WAITING_AUDIT_STATE).build()
         );
     }
 
@@ -43,7 +42,7 @@ public class TopicService {
 
     public List<Topic> getHotTopic(String pageInfoJsonStr) {
         return userServiceFeign.getHotTopicFocuses(pageInfoJsonStr).stream()
-                .map(topicFocus -> topicMapper.selectByUuid(topicFocus.getTopicUuid()))
+                .map(topicFocus -> topicMapper.selectByUuidAndValid(topicFocus.getTopicUuid()))
                 .collect(Collectors.toList());
     }
 
