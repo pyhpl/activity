@@ -24,4 +24,5 @@ public class ConstConfig {
     /** rabbit mq */
     public static final String QUEUE_TOPIC_AUDIT = "queueTopicAudit";
     public static final String QUEUE_ACTIVITY_AUDIT = "queueActivityAudit";
+    public static final String QUEUE_TOPIC = "queueTopic";
 }

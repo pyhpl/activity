@@ -62,4 +62,10 @@ public class TopicController {
         return topicService.getsByCreateUser(stringRedisTemplate.opsForValue().get(token));
     }
 
+    @PutMapping("/api/topic")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void put(@RequestParam Topic topic) {
+        topicService.update(topic);
+    }
+
 }

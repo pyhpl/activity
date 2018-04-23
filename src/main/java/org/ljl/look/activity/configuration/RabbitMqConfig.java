@@ -17,4 +17,9 @@ public class RabbitMqConfig {
         return new Queue(ConstConfig.QUEUE_ACTIVITY_AUDIT);
     }
 
+    @Bean
+    Queue topicQueue() {
+        return new Queue(ConstConfig.QUEUE_TOPIC);
+    }
+
 }

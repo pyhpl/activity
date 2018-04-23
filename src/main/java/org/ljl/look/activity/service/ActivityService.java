@@ -27,7 +27,7 @@ public class ActivityService {
     public void add(Activity activity) {
         activity.getActivityImages().forEach(activityImageService::add);
         activityMapper.insert(activity);
-        activityAuditSender.send(
+        activityAuditSender.sendToAdd(
                 ActivityAudit.builder().activityUuid(activity.getUuid()).state(ConstConfig.WAITING_AUDIT_STATE).build()
         );
     }

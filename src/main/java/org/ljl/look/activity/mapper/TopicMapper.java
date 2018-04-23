@@ -1,10 +1,8 @@
 package org.ljl.look.activity.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.ljl.look.activity.entity.Topic;
+import org.ljl.look.activity.mapper.sql.TopicSql;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -30,4 +28,7 @@ public interface TopicMapper {
 
     @Select("SELECT * FROM topic WHERE (name LIKE '%'||#{key}||'%' OR description LIKE '%'||#{key}||'%') AND valid=${@org.ljl.look.activity.configuration.ConstConfig@VALID}")
     List<Topic> selectByLike(@Param("key") String key);
+
+    @UpdateProvider(type = TopicSql.class, method = "update")
+    void update(Topic topic);
 }

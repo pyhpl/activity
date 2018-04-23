@@ -27,7 +27,7 @@ public class TopicService {
 
     public void add(Topic topic) {
         topicMapper.insert(topic);
-        topicAuditSender.send(
+        topicAuditSender.sendToAdd(
                 TopicAudit.builder().topicUuid(topic.getUuid()).state(ConstConfig.WAITING_AUDIT_STATE).build()
         );
     }
@@ -58,5 +58,9 @@ public class TopicService {
 
     public List<Topic> getByKey(String key) {
         return topicMapper.selectByLike(key);
+    }
+
+    public void update(Topic topic) {
+        topicMapper.update(topic);
     }
 }
