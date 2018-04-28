@@ -22,11 +22,11 @@ public interface ActivityMapper {
     @Select("SELECT * FROM activity WHERE publish_user=#{publishUser} AND valid=${@org.ljl.look.activity.configuration.ConstConfig@VALID}")
     List<Activity> selectByPublishUser(@Param("publishUser") String publishUser);
 
-    @Select("SELECT * FROM activity WHERE " +
+    @Select("SELECT * FROM activity WHERE valid=${@org.ljl.look.activity.configuration.ConstConfig@VALID} AND (" +
             "title LIKE '%'||#{key}||'%' OR " +
             "school LIKE '%'||#{key}||'%' OR " +
             "topic_uuid in (" +
             "   SELECT uuid FROM topic WHERE name LIKE '%'||#{key}||'%' OR parent_topic_uuid in (" +
-            "       SELECT uuid FROM parent_topic WHERE name LIKE '%'||#{key}||'%'))")
+            "       SELECT uuid FROM parent_topic WHERE name LIKE '%'||#{key}||'%')))")
     List<Activity> selectsByLike(@Param("key") String key);
 }
