@@ -2,6 +2,7 @@ package org.ljl.look.activity.mapper;
 
 import org.apache.ibatis.annotations.*;
 import org.ljl.look.activity.entity.Activity;
+import org.ljl.look.activity.mapper.sql.ActivitySql;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,4 +30,7 @@ public interface ActivityMapper {
             "   SELECT uuid FROM topic WHERE name LIKE '%'||#{key}||'%' OR parent_topic_uuid in (" +
             "       SELECT uuid FROM parent_topic WHERE name LIKE '%'||#{key}||'%')))")
     List<Activity> selectsByLike(@Param("key") String key);
+
+    @UpdateProvider(type = ActivitySql.class, method = "update")
+    void update(Activity activity);
 }

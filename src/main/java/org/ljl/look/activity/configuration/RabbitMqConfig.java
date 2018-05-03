@@ -22,4 +22,9 @@ public class RabbitMqConfig {
         return new Queue(ConstConfig.QUEUE_TOPIC);
     }
 
+    @Bean
+    Queue activityQueue() {
+        return new Queue(ConstConfig.QUEUE_ACTIVITY);
+    }
+
 }

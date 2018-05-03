@@ -25,4 +25,5 @@ public class ConstConfig {
     public static final String QUEUE_TOPIC_AUDIT = "queueTopicAudit";
     public static final String QUEUE_ACTIVITY_AUDIT = "queueActivityAudit";
     public static final String QUEUE_TOPIC = "queueTopic";
+    public static final String QUEUE_ACTIVITY = "queueActivity";
 }

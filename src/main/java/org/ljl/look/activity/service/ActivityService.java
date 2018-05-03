@@ -53,4 +53,8 @@ public class ActivityService {
     public Activity getByUuid(String uuid) {
         return activityMapper.selectByUuid(uuid);
     }
+
+    public void update(Activity activity) {
+        activityMapper.update(activity);
+    }
 }
